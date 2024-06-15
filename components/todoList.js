@@ -1,9 +1,9 @@
 // Código basado en https://www.youtube.com/watch?app=desktop&v=STZA_qtm1XU&ab_channel=AnujSingla
 
 class TodoList extends HTMLElement{
-    constructor(){
-        super();
-        
+  constructor(){
+    super();
+ 
     const template = document.createElement('template');
     template.innerHTML = `
     <div>
@@ -20,25 +20,25 @@ class TodoList extends HTMLElement{
     this.todoList = this.shadowRoot.querySelector('#todoList');
 
     this.addButton.addEventListener('click', this.addItem.bind(this));
-    }
+  }
 
-    addItem(){
-        const text = this.input.value;
-        if(text){
-            const item = document.createElement('li');
-            item.textContent = text;
-            
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Eliminar';
-            deleteButton.addEventListener('click', () => {
-                this.todoList.removeChild(item);
-            });
+  addItem(){
+    const text = this.input.value;
+    if(text){
+      const item = document.createElement('li');
+      item.textContent = text;
 
-            item.appendChild(deleteButton);
-            this.todoList.appendChild(item);
-            this.input.value = '';
-        }
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Eliminar';
+      deleteButton.addEventListener('click', () => {
+        this.todoList.removeChild(item);
+      });
+
+      item.appendChild(deleteButton);
+      this.todoList.appendChild(item);
+      this.input.value = '';
     }
+  }
 }
 
 customElements.define('todo-list', TodoList);

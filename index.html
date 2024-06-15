@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Components</title>
-    <script defer src="product.js"></script>
-    <script defer src="todoList.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Components</title>
+  <script defer src="./components/product.js"></script>
+  <script defer src="./components/todoList.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    Si
-    <product-item name="lorem" price="ipsum" discount_price="ipsum*0,3" discount="30%" rating="4"></product-item>
+  <h1>WebComponents</h1>
+  <div class="products">
+    <product-item name="Apple MacBook Pro 16 M3 Pro" image="./assets/mac.jpg" price="9.990" discount="0.3" rating="4"></product-item>
+    <product-item name="Apple MacBook Pro 16 M3 Pro" image="./assets/mac.jpg" price="9.990" discount="0.3" rating="4"></product-item>
+  </div>
+  <div class="todo-list">
     <todo-list></todo-list>
+  </div>
 </body>
 </html>
