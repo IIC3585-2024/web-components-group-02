@@ -32,6 +32,10 @@ class Product extends HTMLElement {
           margin: 10px;
         }
 
+        .product:hover {
+          transform: translateY(-10px);
+        }
+
         h2 {
           font-size: 1.5em;
           margin: 10px 0;

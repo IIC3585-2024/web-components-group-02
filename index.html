@@ -6,16 +6,40 @@
   <title>Web Components</title>
   <script defer src="./components/product.js"></script>
   <script defer src="./components/todoList.js"></script>
+  <script type="module" defer src="./litComponents/litProduct.js"></script>
+  <script type="module" defer src="./litComponents/litTodoList.js"></script>
   <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
   <h1>WebComponents</h1>
+  <h2>Soy un H2 mirenme cambiar de color 🔥 😊🤣❤️😍😒</h2> 
+  <button id="colorButton">Cambiar Color</button>
   <div class="products">
     <product-item name="Apple MacBook Pro 16 M3 Pro" image="./assets/mac.jpg" price="9.990" discount="0.3" rating="4"></product-item>
     <product-item name="Apple MacBook Pro 16 M3 Pro" image="./assets/mac.jpg" price="9.990" discount="0.3" rating="4"></product-item>
+    <lit-product name="Apple MacBook Pro 16 M3 Pro" image="./assets/mac.jpg" price="9.990" discount="0.3" rating="4"></lit-product>
   </div>
   <div class="todo-list">
     <todo-list></todo-list>
+    <lit-todo-list></lit-todo-list>
   </div>
+
+    <script>
+      document.getElementById('colorButton').addEventListener('click', function () {
+        console.log('Changing colors');
+        var headers = document.querySelectorAll('h2');
+        var colors = ['red', 'blue', 'green', 'purple', 'orange', 'pink'];
+
+        headers.forEach(function (header) {
+          var currentColor = header.style.color;
+          var newColor = colors[Math.floor(Math.random() * colors.length)];
+          while (newColor === currentColor) {
+            newColor = colors[Math.floor(Math.random() * colors.length)];
+          }
+          header.style.color = newColor;
+        });
+      });
+    </script>
 </body>
 </html>

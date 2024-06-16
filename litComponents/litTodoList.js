@@ -1,13 +1,21 @@
-// Código basado en https://www.youtube.com/watch?app=desktop&v=STZA_qtm1XU&ab_channel=AnujSingla
+import { LitElement, html, css } from 'https://cdn.skypack.dev/lit';
 
-class TodoList extends HTMLElement{
-  constructor(){
+export class LitTodoList extends LitElement {
+  static get properties() {
+    return {
+      input: { type: String },
+      addButton: { type: String },
+      todoList: {}
+    }
+  }
+
+  constructor() {
     super();
- 
-    const template = document.createElement('template');
-    template.innerHTML = `
-    <style>
-      #todo-list-div {
+    this.addItem = this.addItem.bind(this);
+  }
+
+  static styles = css`
+  #todo-list-div {
         width: 300px;
         margin: 0 auto;
         padding: 20px;
@@ -68,24 +76,14 @@ class TodoList extends HTMLElement{
         background-color: #f44336;
         opacity: 0.8;
       }
+  `
 
-    </style>
+  firstUpdated(){
+    this.input = this.renderRoot.querySelector('#inputBox');
+    this.addButton = this.renderRoot.querySelector('#addButton');
+    this.todoList = this.renderRoot.querySelector('#todoList');
 
-
-    <div id="todo-list-div">
-      <input type="text" id="inputBox" placeholder="Agrega una nueva tarea"></input>
-      <button id="addButton">Agregar</button>
-      <ul id="todoList"></ul>
-    </div>
-    `
-    const shadowRoot = this.attachShadow({mode: 'open'});
-    shadowRoot.appendChild(template.content.cloneNode(true));
-
-    this.input = this.shadowRoot.querySelector('#inputBox');
-    this.addButton = this.shadowRoot.querySelector('#addButton');
-    this.todoList = this.shadowRoot.querySelector('#todoList');
-
-    this.addButton.addEventListener('click', this.addItem.bind(this));
+    this.addButton.addEventListener('click', this.addItem);
   }
 
   addItem(){
@@ -105,6 +103,16 @@ class TodoList extends HTMLElement{
       this.input.value = '';
     }
   }
+
+  render(){
+    return html`
+    <div id="todo-list-div">
+      <input type="text" id="inputBox" placeholder="Agrega una nueva tarea"></input>
+      <button id="addButton">Agregar</button>
+      <ul id="todoList"></ul>
+    </div>
+    `
+  }
 }
 
-customElements.define('todo-list', TodoList);
+customElements.define('lit-todo-list', LitTodoList);
