@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Components</title>
+  <script defer src="./components/product.js"></script>
+  <script defer src="./components/todoList.js"></script>
+  <script type="module" defer src="./litComponents/litProduct.js"></script>
+  <script type="module" defer src="./litComponents/litTodoList.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>WebComponents</h1>
+  <div class="products">
+    <product-item name="Apple MacBook Pro 16 M3 Pro" image="./assets/mac.jpg" price="739.990" discount="0.2" rating="4.9"></product-item>
+    <lit-product name="Apple iPhone 14 Pro Max" image="./assets/iphone.webp" price="1.897.990" discount="0.1" rating="4"></lit-product>
+    <product-item name="Pokemon Platinum Version" image="./assets/pokemon.webp" price="19.990" discount="0.5" rating="4.8"></product-item>
+    <lit-product name="The Legend of Zelda: Ocarina of Time" image="./assets/zelda.webp" price="30.990" discount="0.7" rating="5"></lit-product>
+  </div>
+  <div class="todo-list-box">
+    <todo-list listName="ToDo List con Web Components" prompt="Agregar nueva tarea" firstItem="Primer Item" secondItem="Segundo Item" thirdItem="Tercer Item"></todo-list>
+    <lit-todo-list listName="ToDo List con Lit Web Components" prompt="Agregar una tareilla" firstItem="Prrrrrimero" secondItem="Seeeeeegundo" thirdItem="t e r c e r o"></lit-todo-list>
+  </div>
+
+  <h2>Soy un H2 mirenme cambiar de color 🔥 😊🤣❤️😍😒</h2> 
+  <button id="color-button">Cambiar Color</button>
+
+  <p> Esto es un párrafo y cambio de tamaño 😱😱😱</p>
+  <button id="p-button">Cambiar tamaño</button>
+
+  <p id="non-changing-p">Este párrafo no cambiaría si estuviese encapsulado</p>
+
+  <script src="./encapsulation.js"></script>
+</body>
+
+</html>
