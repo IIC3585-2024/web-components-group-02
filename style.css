@@ -1,23 +1,38 @@
 h1 {
   font-family: Impact, Charcoal, sans-serif;
-  font-size: 24px;
+  font-size: 50px;
   letter-spacing: 4.2px;
   word-spacing: 4.2px;
   color: #ffffff;
   font-weight: 700;
   text-decoration: none solid #444444;
+  text-shadow: rgb(43, 191, 255) 3px 0px 0px, rgb(43, 191, 255) 2.83487px 0.981584px 0px, rgb(43, 191, 255) 2.35766px 1.85511px 0px, rgb(43, 191, 255) 1.62091px 2.52441px 0px, rgb(43, 191, 255) 0.705713px 2.91581px 0px, rgb(43, 191, 255) -0.287171px 2.98622px 0px, rgb(43, 191, 255) -1.24844px 2.72789px 0px, rgb(43, 191, 255) -2.07227px 2.16926px 0px, rgb(43, 191, 255) -2.66798px 1.37182px 0px, rgb(43, 191, 255) -2.96998px 0.42336px 0px, rgb(43, 191, 255) -2.94502px -0.571704px 0px, rgb(43, 191, 255) -2.59586px -1.50383px 0px, rgb(43, 191, 255) -1.96093px -2.27041px 0px, rgb(43, 191, 255) -1.11013px -2.78704px 0px, rgb(43, 191, 255) -0.137119px -2.99686px 0px, rgb(43, 191, 255) 0.850987px -2.87677px 0px, rgb(43, 191, 255) 1.74541px -2.43999px 0px, rgb(43, 191, 255) 2.44769px -1.73459px 0px, rgb(43, 191, 255) 2.88051px -0.838246px 0px;
+}
+
+h2 {
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 30px;
 }
 
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #3b3b3b;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
+  background-color: #2be6ff;
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  margin-bottom: 50px;
+}
+
+p {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+#non-changing-p {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
 }
 
 .products {
@@ -27,4 +42,60 @@ body {
   width: 80%;
   justify-content: center;
   margin-top: 20px;
+}
+
+.todo-list-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  width: 80%;
+  margin-top: 20px;
+}
+
+#color-button {
+  background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
+  border-radius: 5px;
+  display: flex;
+  color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 2vw;
+  font-weight: bold;
+}
+
+#color-button:hover {
+  animation: slidebg 2s linear infinite;
+}
+
+#p-button {
+	box-shadow: 3px 4px 0px 0px #1564ad;
+	background: linear-gradient(to bottom, #7ab0e6 5%, #003870 100%);
+	background-color: #7ab0e6;
+	border-radius: 5px;
+	border: 1px solid #1c8eff;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 8px 38px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #528ecc;
+}
+#p-button:hover {
+	background: linear-gradient(to bottom, #003870 5%, #7ab0e6 100%);
+	background-color: #003870;
+}
+#p-button:active {
+	position:relative;
+	top:1px;
+}
+
+@keyframes slidebg {
+  to {
+    background-position:20vw;
+  }
 }

@@ -17,6 +17,9 @@ export class LitProduct extends LitElement {
     
   static styles = css`
     .product {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       border: 1px solid #ccc;
       background-color: #fff;
       border-radius: 5px;
@@ -25,7 +28,8 @@ export class LitProduct extends LitElement {
       padding: 20px;
       text-align: center;
       transition: transform 0.2s ease-in-out;
-      width: 200px;
+      width: 250px;
+      height: 400px;
       margin: 10px;
     }
 
@@ -34,20 +38,29 @@ export class LitProduct extends LitElement {
     }
 
     h2 {
+      font-family: 'Comic Sans MS';
       font-size: 1.5em;
       margin: 10px 0;
     }
 
-    img {
-      max-width: 100%;
-      height: auto;
+    .img-div {
+      width: 240px;
+      height: 165px;
       margin: 10px 0;
       border-color: #444;
       border-radius: 7px;
       border-style: solid;
     }
 
+    img {
+      max-width: 230px;
+      max-height: 155px;
+      height: auto;
+      padding: 5px;
+    }
+
     p {
+      font-family: Arial, sans-serif;
       font-size: 1em;
       margin: 5px 0;
     }
@@ -88,18 +101,22 @@ export class LitProduct extends LitElement {
     `
 
   render() {
-    const discountPrice = this.price - (this.price * this.discount);
+    const price = parseFloat(this.price.replace(/\./g, ''));
+    let discountPrice = price - (price * this.discount);
+    discountPrice = discountPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     return html`
     <div class="product">
-    <img src="${this.image}" alt="${this.name}">
-    <h2>${this.name}</h2>
-    <div class="price-div">
-      <p id="discount-price">$ ${discountPrice}</p>
-      <p id="price">Normal: <strike>$${this.price}</strike></p>
-      <p id="discount">-${this.discount * 100}%</p>
-    </div>
-    <p id="rating">⭐${this.rating}</p>
-    </div>
+      <div class="img-div">
+        <img src="${this.image}" alt="${this.name}">
+      </div>
+      <h2>${this.name}</h2>
+      <div class="price-div">
+        <p id="discount-price">$ ${discountPrice}</p>
+        <p id="price">Normal: <strike>$${this.price}</strike></p>
+        <p id="discount">-${this.discount * 100}%</p>
+      </div>
+      <p id="rating">⭐${this.rating}</p>
+      </div>
     `
   }
 }

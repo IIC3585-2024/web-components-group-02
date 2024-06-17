@@ -15,11 +15,16 @@ class Product extends HTMLElement {
     const imageSrc = this.getAttribute('image');
     const price = this.getAttribute('price');
     const discount = this.getAttribute('discount');
-    const discountPrice = price - price * discount;
     const rating = this.getAttribute('rating');
+    const numberPrice = parseFloat(price.replace(/\./g, ''));
+    let discountPrice = numberPrice - (numberPrice * discount);
+    discountPrice = discountPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     this.shadowRoot.innerHTML = `
       <style>
         .product {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           border: 1px solid #ccc;
           background-color: #fff;
           border-radius: 5px;
@@ -28,7 +33,8 @@ class Product extends HTMLElement {
           padding: 20px;
           text-align: center;
           transition: transform 0.2s ease-in-out;
-          width: 200px;
+          width: 250px;
+          height: 400px;
           margin: 10px;
         }
 
@@ -37,20 +43,29 @@ class Product extends HTMLElement {
         }
 
         h2 {
+          font-family: 'Comic Sans MS';
           font-size: 1.5em;
           margin: 10px 0;
         }
 
-        img {
-          max-width: 100%;
-          height: auto;
+        .img-div {
+          width: 240px;
+          height: 165px;
           margin: 10px 0;
           border-color: #444;
           border-radius: 7px;
           border-style: solid;
         }
 
+        img {
+          max-width: 230px;
+          max-height: 155px;
+          height: auto;
+          padding: 5px;
+        }
+
         p {
+          font-family: Arial, sans-serif;
           font-size: 1em;
           margin: 5px 0;
         }
@@ -91,7 +106,9 @@ class Product extends HTMLElement {
 
       </style>
       <div class="product">
-        <img src="${imageSrc}" alt="${name}">
+        <div class="img-div">
+          <img src="${imageSrc}" alt="${name}">
+        </div>
         <h2>${name}</h2>
         <div class="price-div">
           <p id="discount-price">$ ${discountPrice}</p>

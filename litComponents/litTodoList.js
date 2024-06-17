@@ -5,7 +5,12 @@ export class LitTodoList extends LitElement {
     return {
       input: { type: String },
       addButton: { type: String },
-      todoList: {}
+      todoList: {},
+      listName: { type: String },
+      prompt: { type: String },
+      firstItem: {},
+      secondItem: {},
+      thirdItem: {}
     }
   }
 
@@ -15,7 +20,7 @@ export class LitTodoList extends LitElement {
   }
 
   static styles = css`
-  #todo-list-div {
+      #todo-list-div {
         width: 300px;
         margin: 0 auto;
         padding: 20px;
@@ -23,6 +28,11 @@ export class LitTodoList extends LitElement {
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         background-color: #f9f9f9;
+      }
+
+      h2 {
+        font-family: 'Comic Sans MS';
+        font-size: 15px;      
       }
 
       #inputBox {
@@ -54,7 +64,8 @@ export class LitTodoList extends LitElement {
         padding: 0;
       }
 
-      #todoList li {
+      li {
+        font-family: Arial, sans-serif;
         background-color: #f1f1f1;
         padding: 10px;
         margin-bottom: 5px;
@@ -63,8 +74,8 @@ export class LitTodoList extends LitElement {
         justify-content: space-between;
       }
 
-      #todoList li .deleteButton {
-        background-color: #f44336;
+      li button {
+        background-color: #eb2626;
         color: white;
         border: none;
         padding: 5px;
@@ -72,8 +83,8 @@ export class LitTodoList extends LitElement {
         cursor: pointer;
       }
       
-      #todoList li .deleteButton:hover {
-        background-color: #f44336;
+      li button:hover {
+        background-color: #b01a1a;
         opacity: 0.8;
       }
   `
@@ -82,6 +93,9 @@ export class LitTodoList extends LitElement {
     this.input = this.renderRoot.querySelector('#inputBox');
     this.addButton = this.renderRoot.querySelector('#addButton');
     this.todoList = this.renderRoot.querySelector('#todoList');
+    this.createItem(this.firstItem);
+    this.createItem(this.secondItem);
+    this.createItem(this.thirdItem);
 
     this.addButton.addEventListener('click', this.addItem);
   }
@@ -104,10 +118,25 @@ export class LitTodoList extends LitElement {
     }
   }
 
+  createItem(itemName){
+    const item = document.createElement('li');
+    item.textContent = itemName;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Eliminar';
+    deleteButton.addEventListener('click', () => {
+      this.todoList.removeChild(item);
+    });
+
+    item.appendChild(deleteButton);
+    this.todoList.appendChild(item);
+  }
+
   render(){
     return html`
     <div id="todo-list-div">
-      <input type="text" id="inputBox" placeholder="Agrega una nueva tarea"></input>
+      <h2>${this.listName}</h2>
+      <input type="text" id="inputBox" placeholder=${this.prompt}></input>
       <button id="addButton">Agregar</button>
       <ul id="todoList"></ul>
     </div>

@@ -5,6 +5,11 @@ class TodoList extends HTMLElement{
     super();
  
     const template = document.createElement('template');
+    const listName = this.getAttribute('listName');
+    const prompt = this.getAttribute('prompt');
+    const firstItem = this.getAttribute('firstItem');
+    const secondItem = this.getAttribute('secondItem');
+    const thirdItem = this.getAttribute('thirdItem');
     template.innerHTML = `
     <style>
       #todo-list-div {
@@ -15,6 +20,11 @@ class TodoList extends HTMLElement{
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         background-color: #f9f9f9;
+      }
+
+      h2 {
+        font-family: 'Comic Sans MS';
+        font-size: 15px;      
       }
 
       #inputBox {
@@ -46,7 +56,8 @@ class TodoList extends HTMLElement{
         padding: 0;
       }
 
-      #todoList li {
+      li {
+        font-family: Arial, sans-serif;
         background-color: #f1f1f1;
         padding: 10px;
         margin-bottom: 5px;
@@ -55,8 +66,8 @@ class TodoList extends HTMLElement{
         justify-content: space-between;
       }
 
-      #todoList li .deleteButton {
-        background-color: #f44336;
+      li button {
+        background-color: #eb2626;
         color: white;
         border: none;
         padding: 5px;
@@ -64,16 +75,16 @@ class TodoList extends HTMLElement{
         cursor: pointer;
       }
       
-      #todoList li .deleteButton:hover {
-        background-color: #f44336;
+      li button:hover {
+        background-color: #b01a1a;
         opacity: 0.8;
       }
-
     </style>
 
 
     <div id="todo-list-div">
-      <input type="text" id="inputBox" placeholder="Agrega una nueva tarea"></input>
+      <h2>${listName}</h2>
+      <input type="text" id="inputBox" placeholder="${prompt}"></input>
       <button id="addButton">Agregar</button>
       <ul id="todoList"></ul>
     </div>
@@ -81,9 +92,14 @@ class TodoList extends HTMLElement{
     const shadowRoot = this.attachShadow({mode: 'open'});
     shadowRoot.appendChild(template.content.cloneNode(true));
 
+    
     this.input = this.shadowRoot.querySelector('#inputBox');
     this.addButton = this.shadowRoot.querySelector('#addButton');
     this.todoList = this.shadowRoot.querySelector('#todoList');
+
+    this.createItem(firstItem);
+    this.createItem(secondItem);
+    this.createItem(thirdItem);
 
     this.addButton.addEventListener('click', this.addItem.bind(this));
   }
@@ -104,6 +120,20 @@ class TodoList extends HTMLElement{
       this.todoList.appendChild(item);
       this.input.value = '';
     }
+  }
+
+  createItem(itemName){
+    const item = document.createElement('li');
+    item.textContent = itemName;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Eliminar';
+    deleteButton.addEventListener('click', () => {
+      this.todoList.removeChild(item);
+    });
+
+    item.appendChild(deleteButton);
+    this.todoList.appendChild(item);
   }
 }
 
